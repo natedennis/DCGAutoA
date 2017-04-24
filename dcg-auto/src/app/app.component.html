@@ -1,3 +1,22 @@
-<h1>
+<h1 [ngClass]="titleClasses">
   {{title}}
 </h1>
+
+<img [src]="truckLogo">
+
+<ul>
+	<li *ngFor="let arr of myArr"> {{arr}} </li>
+</ul>
+<div *ngIf="myArr"> boom </div>
+
+
+<button [disabled]="buttonStatus" (click)="buttonClickEvent($event)" >My Button</button>
+
+ 
+<br/>
+<br/>
+<p> {{makesProperty}} </p>
+<p *ngFor="let arr of makesProperties"> {{arr}}</p>
+
+<app-inventory></app-inventory>
+ 

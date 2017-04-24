@@ -21,7 +21,7 @@ public class Inventory implements java.io.Serializable {
      *
      */
     private static final long serialVersionUID = 2968766832565486085L;
-    private Integer id;
+    private Long id;
     private String stockNumber;
     private int year;
     private int catagoryLineId;
@@ -68,11 +68,11 @@ public class Inventory implements java.io.Serializable {
     @GeneratedValue(strategy = IDENTITY)
 
     @Column(name = "id", unique = true, nullable = false)
-    public Integer getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

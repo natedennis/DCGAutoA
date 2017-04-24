@@ -4,17 +4,20 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { InventoryService } from './service/inventory.service';
+import { InventoryComponent } from './inventory-component/inventory.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InventoryComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [InventoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

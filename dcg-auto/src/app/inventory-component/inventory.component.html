@@ -1,0 +1,15 @@
+<p>
+  Inventory List
+  {{this.currentPage}}
+</p>
+
+<ul class="inventoryItems">
+  <li *ngFor="let inv of inventoryList" (click)="onSelect(inv)"
+      [class.selected]="inv === selectedInv">
+    <span class="badge">{{inv.id}}</span>
+    <span>{{inv.stockNumber}}</span>
+    <span>{{inv.title}}</span>
+    <span>{{inv.newused==1?'Used':'New'}}</span>
+
+  </li>
+</ul>
