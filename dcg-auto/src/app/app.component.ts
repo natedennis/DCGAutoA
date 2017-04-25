@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { InventoryService } from './service/inventory.service'
+import { InventoryService } from './service/inventory.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -21,7 +22,7 @@ export class AppComponent {
 
   buttonStatus = false;
 
-  makesProperty: string = '';
+  makesProperty = '';
   makesProperties;
 
 
@@ -30,7 +31,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    console.log(this.inventoryService.makes);
+//    console.log(this.inventoryService.makes);
     this.makesProperty = this.inventoryService.getData();
     this.makesProperties = this.inventoryService.makes;
   }

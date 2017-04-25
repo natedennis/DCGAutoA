@@ -1,22 +1,47 @@
-<h1 [ngClass]="titleClasses">
-  {{title}}
-</h1>
 
-<img [src]="truckLogo">
+
+
+
+
+
+
+
+
+<div class="container-fluid">
+
+
+	<div class="row  justify-content-md-center">
+		<div class="col">
+			<app-navbar>></app-navbar>
+<!-- 			<h1 [ngClass]="titleClasses">{{title}}</h1> -->
+
+		</div>
+
+	</div>
+	<div class="row  justify-content-md-center">
+		<div class="col-md-auto">
+			<app-ngdb-carousel></app-ngdb-carousel>
+		</div>
+
+	</div>
+	<div class="row">
+		<div class="col"></div>
+
+		<div class="col">
+			<img [src]="truckLogo">
+		</div>
+		<div class="col"></div>
+	</div>
+
+
+<!-- </div> -->
 
 <ul>
-	<li *ngFor="let arr of myArr"> {{arr}} </li>
+	<li *ngFor="let arr of myArr">{{arr}}</li>
 </ul>
-<div *ngIf="myArr"> boom </div>
+<div *ngIf="myArr">boom</div>
 
 
-<button [disabled]="buttonStatus" (click)="buttonClickEvent($event)" >My Button</button>
-
- 
-<br/>
-<br/>
-<p> {{makesProperty}} </p>
-<p *ngFor="let arr of makesProperties"> {{arr}}</p>
-
+<button [disabled]="buttonStatus" (click)="buttonClickEvent($event)">My
+	Button</button>
 <app-inventory></app-inventory>
- 
