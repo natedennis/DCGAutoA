@@ -3,7 +3,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-ngdb-carousel',
-  templateUrl: './ngdb-carousel.component.html'
+  templateUrl: './ngdb-carousel.component.html',
+  styleUrls: ['./ngdb-carousel.component.css']
 })
 
 

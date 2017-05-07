@@ -8,30 +8,31 @@ import { RouterModule, Routes } from '@angular/router';
 import { JsonpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { InventoryService } from './service/inventory.service';
 import { InventoryComponent } from './inventory-component/inventory.component';
 import { NgdbCarouselComponent } from './ngdb-carousel/ngdb-carousel.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
 
-const appRoutes: Routes = [
-//  { path: 'forms', component: ExampleFormComponent },
-//  { path: '', component: HomeComponent },
-];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    InventoryComponent,
-    NgdbCarouselComponent,
-    NavbarComponent],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
     JsonpModule,
-    NgbModule.forRoot(),
-    RouterModule.forRoot(appRoutes)],
+    NgbModule.forRoot()
+  ],
+  declarations: [
+    AppComponent,
+    routedComponents,
+    InventoryComponent,
+    NgdbCarouselComponent,
+    NavbarComponent,
+    HomeComponent],
   providers: [InventoryService],
   bootstrap: [AppComponent]
 })

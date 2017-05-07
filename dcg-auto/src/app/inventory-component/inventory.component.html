@@ -1,16 +1,31 @@
-<p>
-  Inventory List
-  {{this.currentPage}}
-</p>
+<div class="row justify-content-md-center ">
+	<img class="" [src]="truckLogo">
+</div>
+<div class="row justify-content-md-center ">
+	<h1>Inventory List {{this.currentPage}}</h1>
+</div>
 
-<ul class="inventoryItems">
-  <li *ngFor="let inv of inventoryList" (click)="onSelect(inv)"
-      [class.selected]="inv === selectedInv">
-    <span class="badge">{{inv.id}}</span>
-    <span>{{inv.stockNumber}}</span>
-    <span>{{inv.title}}</span>
-    <span>{{inv.newused==1?'Used':'New'}}</span>
+<div class="row ">
+	<div class="card-deck justify-content-md-center">
+		<div class="col-m4" *ngFor="let inv of inventoryList"
+			(click)="onSelect(inv)" [class.selected]="inv === selectedInv">
+			<div class="card">
 
-  </li>
-</ul>
+				<a href="#"><img class="card-img-top"
+					src="http://placehold.it/400x200" alt=""></a>
+				<div class="card-block">
+					<h4 class="card-title">
+						<a href="#">{{inv.year}} {{inv.make.name}}</a>
+					</h4>
+					<h5>${{inv.price}}</h5>
+					<p class="card-text">{{inv.stockNumber}} {{inv.title}}</p>
+				</div>
+				<div class="card-footer">
+					<small class="text-muted">&#9733; &#9733; &#9733; &#9733;
+						&#9734;</small>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 

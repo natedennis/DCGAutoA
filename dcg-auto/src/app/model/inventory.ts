@@ -1,10 +1,13 @@
+import { Make } from '../model/make';
+
 export class Inventory {
   id: number;
   stockNumber: string;
   year: string;
   catagoryLineId: number;
-  makeId: number;
+  make: Make;
   title: string;
+  price: number;
   descript: string;
   newused: boolean;
   dateListed: string;

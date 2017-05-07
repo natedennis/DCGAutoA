@@ -11,7 +11,7 @@ import { PaginatedInventoryListWrapper } from '../model/PaginatedInventoryListWr
   templateUrl: './inventory.component.html',
   styleUrls: ['./inventory.component.css']
 })
-export class InventoryComponent implements OnInit {
+export class InventoryComponent implements OnInit {selectedInv: any;
   plr: PaginatedInventoryListWrapper;
   inventoryList: Inventory[];
   selectedInventory: Inventory;
@@ -20,8 +20,8 @@ export class InventoryComponent implements OnInit {
   totalResults = 0;
   sortFields = '';
   sortDirections = '';
-  inventoryItem:Inventory;
-
+  inventoryItem: Inventory;
+  truckLogo = 'https://www.crookmotors.com/img/siteimages/garage.jpg';
 
 
   constructor(private inventoryService: InventoryService) { }
@@ -36,10 +36,10 @@ export class InventoryComponent implements OnInit {
       this.totalResults = this.plr.totalResults;
       this.sortFields = this.plr.sortFields;
       this.sortDirections = this.plr.sortDirection;
-//      console.log(this.inventoryList);
+      console.log(this.inventoryList);
     });
 
-//    console.log(this.plr);
+    console.log(this.plr);
   }
 
   ngOnInit() {

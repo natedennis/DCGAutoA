@@ -2,12 +2,16 @@ package org.dcg.auto.data.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,8 +29,9 @@ public class Inventory implements java.io.Serializable {
     private String stockNumber;
     private int year;
     private int catagoryLineId;
-    private int makeId;
+    private Make make;
     private String title;
+    private BigDecimal price;
     private String descript;
     private String newused;
     private Date dateListed;
@@ -39,34 +44,8 @@ public class Inventory implements java.io.Serializable {
     public Inventory() {
     }
 
-    public Inventory(int year, int catagoryLineId, int makeId, Date createDate, String isActive) {
-        this.year = year;
-        this.catagoryLineId = catagoryLineId;
-        this.makeId = makeId;
-        this.createDate = createDate;
-        this.isActive = isActive;
-    }
-
-    public Inventory(String stockNumber, int year, int catagoryLineId, int makeId, String title, String descript, String newused, Date dateListed,
-            Date dateDeleted, Date createDate, String isActive, String fileList, Integer social) {
-        this.stockNumber = stockNumber;
-        this.year = year;
-        this.catagoryLineId = catagoryLineId;
-        this.makeId = makeId;
-        this.title = title;
-        this.descript = descript;
-        this.newused = newused;
-        this.dateListed = dateListed;
-        this.dateDeleted = dateDeleted;
-        this.createDate = createDate;
-        this.isActive = isActive;
-        this.fileList = fileList;
-        this.social = social;
-    }
-
     @Id
     @GeneratedValue(strategy = IDENTITY)
-
     @Column(name = "id", unique = true, nullable = false)
     public Long getId() {
         return this.id;
@@ -103,13 +82,14 @@ public class Inventory implements java.io.Serializable {
         this.catagoryLineId = catagoryLineId;
     }
 
-    @Column(name = "make_id", nullable = false)
-    public int getMakeId() {
-        return this.makeId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "make_id", nullable = false)
+    public Make getMake() {
+        return this.make;
     }
 
-    public void setMakeId(int makeId) {
-        this.makeId = makeId;
+    public void setMake(Make make) {
+        this.make = make;
     }
 
     @Column(name = "title", length = 150)
@@ -119,6 +99,15 @@ public class Inventory implements java.io.Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Column(name = "price", columnDefinition = "Decimal(10,2) default '0.00'")
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     @Column(name = "descript", length = 21844)

@@ -1,47 +1,26 @@
+<!-- header -->
+<header>
+<!--     <ul class="nav nav-tabs"> -->
+<!--         <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><a routerLink="/">Home</a></li> -->
+<!--         <li routerLinkActive="active"><a routerLink="/inventory">Inventory</a></li> -->
+<!--         <li routerLinkActive="active"><a routerLink="/about">About Us</a></li> -->
+<!--     </ul> -->
+<app-navbar>></app-navbar> 
+</header>
 
+<main>
+<div class="container-fluid  justify-content-md-center ">
+    <router-outlet></router-outlet>
+</div>
+</main>
 
+<!-- footer -->
+<footer>
+    <p>
+        <a href="http://natedennis.com" target="_top">Full Stack</a>
+    </p>
+    <p>
+        <a href="http://natedennis.com" target="_top">natedennis.com</a>
+    </p>
+</footer>
 
-
-
-
-
-
-
-<div class="container-fluid">
-
-
-	<div class="row  justify-content-md-center">
-		<div class="col">
-			<app-navbar>></app-navbar>
-<!-- 			<h1 [ngClass]="titleClasses">{{title}}</h1> -->
-
-		</div>
-
-	</div>
-	<div class="row  justify-content-md-center">
-		<div class="col-md-auto">
-			<app-ngdb-carousel></app-ngdb-carousel>
-		</div>
-
-	</div>
-	<div class="row">
-		<div class="col"></div>
-
-		<div class="col">
-			<img [src]="truckLogo">
-		</div>
-		<div class="col"></div>
-	</div>
-
-
-<!-- </div> -->
-
-<ul>
-	<li *ngFor="let arr of myArr">{{arr}}</li>
-</ul>
-<div *ngIf="myArr">boom</div>
-
-
-<button [disabled]="buttonStatus" (click)="buttonClickEvent($event)">My
-	Button</button>
-<app-inventory></app-inventory>

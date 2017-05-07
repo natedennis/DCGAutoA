@@ -1,0 +1,39 @@
+
+	<div class="row  justify-content-md-center">
+		<div class="col">
+<!-- 					<app-ngdb-carousel></app-ngdb-carousel> -->
+		</div>
+	</div>
+	<div class="row  justify-content-md-center">
+		<div class="col">
+			<!-- 			<h1 [ngClass]="titleClasses">{{title}}</h1> -->
+
+		</div>
+
+	</div>
+	<div class="row  justify-content-md-center">
+		<div class="col-md-auto"></div>
+
+	</div>
+	<div class="row">
+		<div class="col"></div>
+
+		<div class="col">
+<!-- 			<img [src]="truckLogo"> -->
+					<app-ngdb-carousel></app-ngdb-carousel>
+
+		</div>
+		<div class="col"></div>
+	</div>
+
+
+
+
+<ul>
+	<li *ngFor="let arr of myArr">{{arr}}</li>
+</ul>
+<div *ngIf="myArr">boom</div>
+
+
+<button [disabled]="buttonStatus" (click)="buttonClickEvent($event)">My
+	Button</button>
