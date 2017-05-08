@@ -23,11 +23,14 @@ export class InventoryService {
       .catch(this.handleError);
   }
 
-   getAllInventory2(): Promise<Inventory[]>  {
-    console.log('getAllInventory2');
-     return this.http.get(this.inventoryUrl)
-          .map(res => res.json()).toPromise();
+  getInventoryPage(page, maxResults): Promise<PaginatedInventoryListWrapper> {
+    console.log('getAllInventory');
+    return this.http.get(this.inventoryUrl + '?page=' + page + '&pageSize=' + maxResults)
+      .toPromise()
+      .then(response => response.json() as PaginatedInventoryListWrapper)
+      .catch(this.handleError);
   }
+
 
   getInventory(id: number): Promise<Inventory> {
     const url = `${this.inventoryUrl}/${id}`;

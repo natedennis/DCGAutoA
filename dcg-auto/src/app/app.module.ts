@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { JsonpModule } from '@angular/http';
 
@@ -24,6 +25,7 @@ import { HomeComponent } from './home/home.component';
     ReactiveFormsModule,
     HttpModule,
     JsonpModule,
+    InfiniteScrollModule,
     NgbModule.forRoot()
   ],
   declarations: [

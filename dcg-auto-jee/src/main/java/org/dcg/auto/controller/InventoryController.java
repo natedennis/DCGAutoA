@@ -56,13 +56,14 @@ public class InventoryController extends Application {
     public Response listInventory(
             @Context SecurityContext context,
             @DefaultValue("1") @QueryParam("page") Integer page,
+            @DefaultValue("10") @QueryParam("pageSize") Integer pageSize,
             @DefaultValue("id") @QueryParam("sortFields") String sortFields,
             @DefaultValue("asc") @QueryParam("sortDirections") String sortDirections) {
         PaginatedInventoryListWrapper plw = new PaginatedInventoryListWrapper();
         plw.setCurrentPage(page);
         plw.setSortFields(sortFields);
         plw.setSortDirections(sortDirections);
-        plw.setPageSize(10);
+        plw.setPageSize(pageSize);
 
         return Response.ok(findInventory(plw)).header("Access-Control-Allow-Origin", "*").build();
     }

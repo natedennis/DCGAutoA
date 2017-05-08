@@ -6,7 +6,12 @@
 </div>
 
 <div class="row ">
-	<div class="card-deck justify-content-md-center">
+	<div class="card-deck justify-content-md-center search-results"
+         data-infinite-scroll
+         debounce
+         [infiniteScrollDistance]="scrollDistance"
+         [infiniteScrollThrottle]="throttle"
+         (scrolled)="onScrollDown()">
 		<div class="col-m4" *ngFor="let inv of inventoryList"
 			(click)="onSelect(inv)" [class.selected]="inv === selectedInv">
 			<div class="card m-2">
