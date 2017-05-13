@@ -6,5 +6,6 @@ export class PaginatedInventoryListWrapper {
   totalResults: number;
   sortFields: string;
   sortDirection: string;
+  query: string;
   list: Inventory[];
 }

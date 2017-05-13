@@ -9,7 +9,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { JsonpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule, routedComponents } from './app-routing.module';
+import { AppRoutingModule, routing, appRoutingProviders } from './app-routing.module';
 import { InventoryService } from './service/inventory.service';
 import { InventoryComponent } from './inventory-component/inventory.component';
 import { NgdbCarouselComponent } from './ngdb-carousel/ngdb-carousel.component';
@@ -30,12 +30,14 @@ import { HomeComponent } from './home/home.component';
   ],
   declarations: [
     AppComponent,
-    routedComponents,
+    routing,
     InventoryComponent,
     NgdbCarouselComponent,
     NavbarComponent,
     HomeComponent],
-  providers: [InventoryService],
+  providers: [
+    InventoryService,
+    appRoutingProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

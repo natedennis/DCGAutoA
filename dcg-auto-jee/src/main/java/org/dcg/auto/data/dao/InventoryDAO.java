@@ -13,18 +13,24 @@ import org.dcg.auto.data.model.Inventory;
  */
 public interface InventoryDAO extends BaseDAO<Inventory> {
 
+
+    /**
+     * @param query
+     * @param isActive
+     * @return
+     */
+    Integer countInventory(String query, Boolean isActive);
+
+
     /**
      * @param startPosition
      * @param maxResults
      * @param sortFields
      * @param sortDirections
+     * @param query
+     * @param isActive
      * @return
      */
-    List<Inventory> findInventory(int startPosition, int maxResults, String sortFields, String sortDirections);
-
-    /**
-     * @return
-     */
-    Integer countInventory();
+    List<Inventory> findInventory(int startPosition, int maxResults, String sortFields, String sortDirections, String query, Boolean isActive);
 
 }

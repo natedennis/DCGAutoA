@@ -41,13 +41,15 @@ public class InventoryController extends Application {
     private MemberService memberService;
 
     private PaginatedInventoryListWrapper findInventory(PaginatedInventoryListWrapper wrapper) {
-        wrapper.setTotalResults(inventoryService.countInventory());
+        wrapper.setTotalResults(inventoryService.countInventory(wrapper.getQuery(), Boolean.TRUE));
 
         int start = (wrapper.getCurrentPage() - 1) * wrapper.getPageSize();
         wrapper.setList(inventoryService.findInventory(start,
                 wrapper.getPageSize(),
                 wrapper.getSortFields(),
-                wrapper.getSortDirections()));
+                wrapper.getSortDirections(),
+                wrapper.getQuery(),
+                Boolean.TRUE));
         return wrapper;
     }
 
@@ -58,13 +60,14 @@ public class InventoryController extends Application {
             @DefaultValue("1") @QueryParam("page") Integer page,
             @DefaultValue("10") @QueryParam("pageSize") Integer pageSize,
             @DefaultValue("id") @QueryParam("sortFields") String sortFields,
-            @DefaultValue("asc") @QueryParam("sortDirections") String sortDirections) {
+            @DefaultValue("asc") @QueryParam("sortDirections") String sortDirections,
+            @QueryParam("query") String query) {
         PaginatedInventoryListWrapper plw = new PaginatedInventoryListWrapper();
         plw.setCurrentPage(page);
         plw.setSortFields(sortFields);
         plw.setSortDirections(sortDirections);
         plw.setPageSize(pageSize);
-
+        plw.setQuery(query);
         return Response.ok(findInventory(plw)).header("Access-Control-Allow-Origin", "*").build();
     }
 

@@ -33,13 +33,13 @@ public class Inventory implements java.io.Serializable {
     private String title;
     private BigDecimal price;
     private String descript;
-    private String newused;
+    private Boolean newused;
     private Date dateListed;
     private Date dateDeleted;
     private Date createDate;
-    private String isActive;
+    private Boolean isActive;
     private String fileList;
-    private Integer social;
+    private Boolean social;
 
     public Inventory() {
     }
@@ -120,11 +120,11 @@ public class Inventory implements java.io.Serializable {
     }
 
     @Column(name = "newused", length = 4)
-    public String getNewused() {
+    public Boolean getNewused() {
         return this.newused;
     }
 
-    public void setNewused(String newused) {
+    public void setNewused(Boolean newused) {
         this.newused = newused;
     }
 
@@ -158,12 +158,12 @@ public class Inventory implements java.io.Serializable {
         this.createDate = createDate;
     }
 
-    @Column(name = "is_active", nullable = false, length = 3)
-    public String getIsActive() {
+    @Column(name = "is_active", nullable = false)
+    public Boolean getIsActive() {
         return this.isActive;
     }
 
-    public void setIsActive(String isActive) {
+    public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
     }
 
@@ -177,11 +177,11 @@ public class Inventory implements java.io.Serializable {
     }
 
     @Column(name = "social")
-    public Integer getSocial() {
+    public Boolean getSocial() {
         return this.social;
     }
 
-    public void setSocial(Integer social) {
+    public void setSocial(Boolean social) {
         this.social = social;
     }
 

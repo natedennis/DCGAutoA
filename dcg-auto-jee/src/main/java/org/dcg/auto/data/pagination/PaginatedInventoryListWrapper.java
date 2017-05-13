@@ -11,19 +11,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.dcg.auto.data.model.Inventory;
 
-/**
- * Wraps all the information needed to paginate a table.
- *
- * @author Roberto Cortez
- */
+
 @XmlRootElement
 public class PaginatedInventoryListWrapper implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -3831884112998908912L;
+
     private Integer currentPage;
     private Integer pageSize;
     private Integer totalResults;
 
     private String sortFields;
     private String sortDirections;
+    private String query;
 
     @XmlElement
     private List<Inventory> list;
@@ -66,6 +68,14 @@ public class PaginatedInventoryListWrapper implements Serializable {
 
     public void setSortDirections(String sortDirections) {
         this.sortDirections = sortDirections;
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
     }
 
     public List<Inventory> getList() {

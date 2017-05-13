@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, URLSearchParams } from '@angular/http';
 import { Inventory } from '../model/inventory';
 import { PaginatedInventoryListWrapper } from '../model/PaginatedInventoryListWrapper';
+
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -15,17 +16,32 @@ export class InventoryService {
 
   constructor(private http: Http) { }
 
-  getAllInventory(): Promise<PaginatedInventoryListWrapper> {
+  getAllInventory(query: string): Promise<PaginatedInventoryListWrapper> {
     console.log('getAllInventory');
+    let url = this.inventoryUrl;
+
+    if (query != null && query.length > 0) {
+      url = url + '&query=' + query;
+    }
+    console.log('url: ' + url);
+
     return this.http.get(this.inventoryUrl)
       .toPromise()
       .then(response => response.json() as PaginatedInventoryListWrapper)
       .catch(this.handleError);
   }
 
-  getInventoryPage(page, maxResults): Promise<PaginatedInventoryListWrapper> {
+
+  getInventoryPage(page, maxResults, query: string): Promise<PaginatedInventoryListWrapper> {
     console.log('getAllInventory');
-    return this.http.get(this.inventoryUrl + '?page=' + page + '&pageSize=' + maxResults)
+    let url = this.inventoryUrl + '?page=' + page + '&pageSize=' + maxResults;
+
+    if (query != null && query.length > 0) {
+      url = url + '&query=' + query;
+    }
+    console.log('url: ' + url);
+
+    return this.http.get(url)
       .toPromise()
       .then(response => response.json() as PaginatedInventoryListWrapper)
       .catch(this.handleError);

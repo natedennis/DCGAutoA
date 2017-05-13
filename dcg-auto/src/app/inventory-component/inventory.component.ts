@@ -3,6 +3,8 @@ import { InventoryService } from '../service/inventory.service';
 import { Inventory } from '../model/inventory';
 import { PaginatedInventoryListWrapper } from '../model/PaginatedInventoryListWrapper';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
 
 
 
@@ -16,13 +18,15 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 export class InventoryComponent implements OnInit {
   selectedInv: any;
   plr: PaginatedInventoryListWrapper;
-  inventoryList: Inventory[];
+//  inventoryList: Inventory[];
+  inventoryList = new Array<Inventory>();
   selectedInventory: Inventory;
-  currentPage = 0;
+  currentPage = 1;
   pageSize = 100;
   totalResults = 0;
   sortFields = '';
   sortDirections = '';
+  query = '';
   inventoryItem: Inventory;
   truckLogo = 'https://www.crookmotors.com/img/siteimages/garage.jpg';
 
@@ -30,11 +34,27 @@ export class InventoryComponent implements OnInit {
   throttle = 300;
   scrollDistance = 2;
 
-  constructor(private inventoryService: InventoryService) { }
+  constructor(
+    private inventoryService: InventoryService,
+    private router: Router,
+    private route: ActivatedRoute, ) { }
 
-  getInventory(): void {
-    //    this.inventoryService.getAllInventory().then(inventoryList => this.inventoryList = inventoryList);
-    this.inventoryService.getAllInventory().then(res => {
+
+
+  ngOnInit() {
+    //    this.route.params
+    //      .switchMap((params: Params) => this.getInventory(params['query']))
+    //      .subscribe((plr: PaginatedInventoryListWrapper) => this.plr = plr);
+    this.query = this.route.snapshot.params['query'];
+    console.log(this.query);
+    this.addItems(this.currentPage, this.pageSize, this.query);
+  }
+
+  getInventory(query: string): void {
+    console.log('getInventory: ' + query);
+
+
+    this.inventoryService.getAllInventory(query).then(res => {
       this.plr = res as PaginatedInventoryListWrapper;
       //      console.log(this.plr);
       this.inventoryList = this.plr.list as Inventory[];
@@ -43,17 +63,11 @@ export class InventoryComponent implements OnInit {
       this.totalResults = this.plr.totalResults;
       this.sortFields = this.plr.sortFields;
       this.sortDirections = this.plr.sortDirection;
+      //      this.query = this.plr.query;
       console.log(this.inventoryList);
     });
 
     console.log(this.plr);
-  }
-
-  ngOnInit() {
-    //    console.log('test inventory');
-    this.getInventory();
-
-
   }
   generateArray(obj) {
     return Object.keys(obj).map((key) => { return obj[key]; });
@@ -68,8 +82,8 @@ export class InventoryComponent implements OnInit {
 
   }
 
-  addItems(startIndex, pageSize) {
-    this.inventoryService.getInventoryPage(startIndex, pageSize).then(res => {
+  addItems(startIndex, pageSize, query) {
+    this.inventoryService.getInventoryPage(startIndex, pageSize, query).then(res => {
       this.plr = res as PaginatedInventoryListWrapper;
       //      this.inventoryList = this.plr.list as Inventory[];
       this.currentPage = startIndex;
@@ -77,7 +91,7 @@ export class InventoryComponent implements OnInit {
       this.totalResults = this.plr.totalResults;
       this.sortFields = this.plr.sortFields;
       this.sortDirections = this.plr.sortDirection;
-      console.log(this.plr);
+      console.log(this.plr.list);
       for (let i = 0; i < this.plr.list.length; ++i) {
         this.inventoryList.push(this.plr.list[i]);
       }
@@ -87,8 +101,8 @@ export class InventoryComponent implements OnInit {
 
   onScrollDown() {
     console.log('scrolled!!');
-    this.currentPage++;
-    this.addItems(this.currentPage, this.pageSize);
+    ++this.currentPage;
+    this.addItems(this.currentPage, this.pageSize, this.query);
   }
 
 

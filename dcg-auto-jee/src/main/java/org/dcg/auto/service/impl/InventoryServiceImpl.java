@@ -30,13 +30,13 @@ public class InventoryServiceImpl implements InventoryService {
      * java.lang.String, java.lang.String)
      */
     @Override
-    public List<Inventory> findInventory(int startPosition, int maxResults, String sortFields, String sortDirections) {
-        return inventoryDAO.findInventory(startPosition, maxResults, sortFields, sortDirections);
+    public List<Inventory> findInventory(int startPosition, int maxResults, String sortFields, String sortDirections, String query, Boolean isActive) {
+        return inventoryDAO.findInventory(startPosition, maxResults, sortFields, sortDirections, query, isActive);
     }
 
     @Override
-    public Integer countInventory() {
-        return inventoryDAO.countInventory();
+    public Integer countInventory(String query, Boolean isActive) {
+        return inventoryDAO.countInventory(query, isActive);
     }
 
     /*
